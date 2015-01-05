@@ -21,26 +21,29 @@ import org.apache.log4j.Logger;
 public class Config {
 
 	private static final Logger logger = Logger.getLogger(Config.class.getName());
+
 	
 	private static Properties m_cfg = null;
 	private static boolean expansion = true;
 
 	private static final String startTag = "${";
 	private static final String endTag = "}";
+
 	
-	private static final String propsFileName = System.getenv("MY_PROP")+"/my-personal-properties.properties";
+	private static final String propsFileName = "/home/portaleLiferay/liferay-portal-6.1.2-ce-ga3/my-personal.properties";
 	
 	private static synchronized void configInit() {
 		try {
 			//String jbossHome = System.getenv("HOME");
-			logger.info("Loading propsFileName [" + propsFileName + "]");
+			//logger.info("Loading propsFileName [" + propsFileName + "]");
 			Config.load(new FileInputStream(propsFileName));
 		} catch (Exception ex) {
-			String msg = "Error Loading File Properties [" + propsFileName + "]";
-			logger.info(msg, ex);
+			String msg = "Errore di caricamento dei file di properties [" + propsFileName + "]";
+			//logger.info(msg, ex);
 		}
 	}
 
+	
 	/**
 	 * @param in
 	 *            the key which string value to be replaced with values from
@@ -52,7 +55,7 @@ public class Config {
 		try{
 			reload();
 		}catch(Exception e){
-			logger.info("Reload FAIL - Properties ARE NOT SYNCs");
+			logger.info("Reload FALLITO - Properties NON ALLINEATE");
 		}
 		
 		if (in == null)
@@ -81,7 +84,7 @@ public class Config {
 		try{
 			reload();
 		}catch(Exception e){
-			logger.info("Reload FAIL - Properties ARE NOT SYNCs");
+			logger.info("Reload FALLITO - Properties NON ALLINEATE");
 		}
 		
 		if (in == null)
@@ -114,7 +117,7 @@ public class Config {
 		try{
 			reload();
 		}catch(Exception e){
-			logger.info("Reload FAIL - Properties ARE NOT SYNCs");
+			logger.info("Reload FALLITO - Properties NON ALLINEATE");
 		}
 		
 		for (Enumeration en = p.keys(); en.hasMoreElements();) {
@@ -135,7 +138,7 @@ public class Config {
 		try{
 			reload();
 		}catch(Exception e){
-			logger.info("Reload FAIL - Properties ARE NOT SYNCs");
+			logger.info("Reload FALLITO - Properties NON ALLINEATE");
 		}
 		
 		boolean result = false;
@@ -156,7 +159,7 @@ public class Config {
 		try{
 			reload();
 		}catch(Exception e){
-			logger.info("Reload FAIL - Properties ARE NOT SYNCs");
+			logger.info("Reload FALLITO - Properties NON ALLINEATE");
 		}
 
 		try {
@@ -182,14 +185,14 @@ public class Config {
 		try{
 			reload();
 		}catch(Exception e){
-			logger.info("Reload FAIL - Properties ARE NOT SYNCs");
+			logger.info("Reload FALLITO - Properties NON ALLINEATE");
 		}
 		
 		try {
 			requestedItem = Integer.parseInt(getProp(prop));
 		} catch (NumberFormatException ex) {
 			String msg = "Property [" + prop + "] is not a number!";
-			logger.info(msg, ex);
+			//logger.info(msg, ex);
 		}
 
 		return requestedItem;
@@ -208,7 +211,7 @@ public class Config {
 		try{
 			reload();
 		}catch(Exception e){
-			logger.info("Reload FAIL - Properties ARE NOT SYNCs");
+			logger.info("Reload FALLITO - Properties NON ALLINEATE");
 		}
 		
 		long requestedItem = 0;
@@ -217,7 +220,7 @@ public class Config {
 			requestedItem = Long.parseLong(getProp(prop));
 		} catch (NumberFormatException ex) {
 			String msg = "Property [" + prop + "] is not a number!";
-			logger.info(msg, ex);
+			//logger.info(msg, ex);
 		}
 
 		return requestedItem;
@@ -235,7 +238,7 @@ public class Config {
 		try{
 			reload();
 		}catch(Exception e){
-			logger.info("Reload FAIL - Properties ARE NOT SYNCs");
+			logger.info("Reload FALLITO - Properties NON ALLINEATE");
 		}
 		
 		String propValue;
@@ -245,14 +248,14 @@ public class Config {
 		}
 
 		if ((propValue = m_cfg.getProperty(propName)) == null) {
-			logger.info("Configuration item [" + propName + "] missing!");
+			//logger.info("Configuration item [" + propName + "] missing!");
 		}
 
 		if (isExpansionEnabled()) {
 			propValue = expand(propValue);
 		}
 
-		logger.info("returning propName [" + propName + "] propValue [" + propValue + "]");
+		//logger.info("returning propName [" + propName + "] propValue [" + propValue + "]");
 		return propValue;
 	}
 
@@ -261,7 +264,7 @@ public class Config {
 		try{
 			reload();
 		}catch(Exception e){
-			logger.info("Reload FAIL - Properties ARE NOT SYNCs");
+			logger.info("Reload FALLITO - Properties NON ALLINEATE");
 		}
 		
 		String propValue;
@@ -272,14 +275,14 @@ public class Config {
 
 		customProps.putAll(m_cfg);
 		if ((propValue = customProps.getProperty(propName)) == null) {
-			logger.info("Configuration item [" + propName + "] missing!");
+			//logger.info("Configuration item [" + propName + "] missing!");
 		}
 
 		if (isExpansionEnabled()) {
 			propValue = expand(propValue, customProps);
 		}
 
-		logger.info("returning propName [" + propName + "] propValue [" + propValue + "]");
+		//logger.info("returning propName [" + propName + "] propValue [" + propValue + "]");
 		return propValue;
 	}
 
@@ -306,7 +309,7 @@ public class Config {
 		try{
 			reload();
 		}catch(Exception e){
-			logger.info("Reload FAIL - Properties ARE NOT SYNCs");
+			logger.info("Reload FALLITO - Properties NON ALLINEATE");
 		}
 		
 		String requestedItem;
@@ -321,7 +324,7 @@ public class Config {
 			}
 		} catch (Exception ex) {
 			String msg = "Property [" + prop + "] error!";
-			logger.info(msg, ex);
+			//logger.info(msg, ex);
 		}
 
 		return result;
@@ -345,7 +348,7 @@ public class Config {
 		try{
 			reload();
 		}catch(Exception e){
-			logger.info("Reload FAIL - Properties ARE NOT SYNCs");
+			logger.info("Reload FALLITO - Properties NON ALLINEATE");
 		}
 		
 		Map<String, String> result = new HashMap<String, String>();
@@ -373,7 +376,7 @@ public class Config {
 		try{
 			reload();
 		}catch(Exception e){
-			logger.info("Reload FAIL - Properties ARE NOT SYNCs");
+			logger.info("Reload FALLITO - Properties NON ALLINEATE");
 		}
 		
 		Map<String, String> result = new HashMap<String, String>();
@@ -395,7 +398,7 @@ public class Config {
 		try{
 			reload();
 		}catch(Exception e){
-			logger.info("Reload FAIL - Properties ARE NOT SYNCs");
+			logger.info("Reload FALLITO - Properties NON ALLINEATE");
 		}
 		
 		List<String> result = new ArrayList<String>();
@@ -428,7 +431,7 @@ public class Config {
 			m_cfg.load(is);
 		} catch (Exception ex) {
 			String msg = "Error loading properties!";
-			logger.info(msg, ex);
+			//logger.info(msg, ex);
 		}
 	}
 	
@@ -490,4 +493,5 @@ public class Config {
 
 	}
 
+	
 }

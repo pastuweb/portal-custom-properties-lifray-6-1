@@ -1,6 +1,6 @@
 <%@page import="com.liferay.portal.service.RoleLocalServiceUtil"%>
 <%@include file="/init.jsp" %>
-<%@include file="/propertiesnh-common/header.jsp" %>
+<%@include file="/properties-common/header.jsp" %>
 		
     <portlet:actionURL name="reloadProperties" var="reloadPropertiesURL" windowState="maximized" />
     <portlet:actionURL name="newProperties" var="newPropertiesURL" windowState="maximized" />
@@ -37,7 +37,7 @@
 	          value="<%=Config.getProp(itemNhProp.toString()) %>" />
 	      
 	      <liferay-ui:search-container-column-jsp
-	          path="/propertiesnh-view/propertiesnh_actions.jsp"
+	          path="/properties-view/properties_actions.jsp"
 	          align="right" />	
 	
 	    </liferay-ui:search-container-row>
@@ -64,4 +64,4 @@
 	    
 	</div>
 
- <%@include file="/propertiesnh-common/footer.jsp" %> 
+ <%@include file="/properties-common/footer.jsp" %> 

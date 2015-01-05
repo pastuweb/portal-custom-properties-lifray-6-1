@@ -1,5 +1,5 @@
 <%@include file="/init.jsp" %>
-<%@include file="/propertiesnh-common/header.jsp" %>
+<%@include file="/properties-common/header.jsp" %>
 		
     <portlet:actionURL name="insertKeyValueProperties" var="insertKeyValuePropertiesURL" windowState="maximized" />
 	
@@ -23,9 +23,9 @@
 	    <br> 
 	    <br>
     	<portlet:renderURL var="indietroURL">
-    			<portlet:param name="jspPage" value="/propertiesnh-view/viewProperties.jsp"/>
+    			<portlet:param name="jspPage" value="/properties-view/viewProperties.jsp"/>
     	</portlet:renderURL>
 	    <aui:button value="Indietro" onClick="<%=indietroURL.toString() %>"/>
 	</div>
 
- <%@include file="/propertiesnh-common/footer.jsp" %> 
+ <%@include file="/properties-common/footer.jsp" %> 

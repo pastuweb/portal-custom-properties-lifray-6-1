@@ -1,7 +1,7 @@
 <%@include file="/init.jsp" %>
 
 
-<div class="stileVistePortlet">
+<div>
 	<div style="text-align:center;">
 	
 		<h2 style="color:#FF0000;">

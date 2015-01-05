@@ -1,60 +1,45 @@
 package net.appuntivari.properties.portlet;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletException;
-
-import org.apache.log4j.Logger;
-
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.Validator;
-import com.liferay.util.bridges.mvc.MVCPortlet;
-
 import net.appuntivari.properties.util.Config;
+import org.apache.log4j.Logger;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 
 public class PropertiesViewPortlet extends MVCPortlet {
 		 
 		private static Logger logger = Logger.getLogger(PropertiesViewPortlet.class);
 
-		private static final String viewPropertiesJSP = "/propertiesnh-view/viewProperties.jsp";
-		private static final String editValueKeyPropertiesJSP = "/propertiesnh-view/editValueKeyProperties.jsp";
-		private static final String insertKeyValuePropertiesJSP = "/propertiesnh-view/insertKeyValueProperties.jsp";
+		private static final String viewPropertiesjsp = "/properties-view/viewProperties.jsp";
+		private static final String editValueKeyPropertiesjsp = "/properties-view/editValueKeyProperties.jsp";
+		private static final String insertKeyValuePropertiesjsp = "/properties-view/insertKeyValueProperties.jsp";
 
 		
-		public void reloadNHproperties(ActionRequest request, ActionResponse response)
+		public void reloadProperties(ActionRequest request, ActionResponse response)
 		        throws Exception {
 
 				Config.reload();
-				logger.info("reloadNHproperties - Config.reload()");
-		        response.setRenderParameter("jspPage", viewPropertiesJSP);
+				logger.info("reloadProperties - Config.reload()");
+		        response.setRenderParameter("jspPage", viewPropertiesjsp);
 		}
 		
 		
 		
-		public void editValueKeyNHproperties(ActionRequest request, ActionResponse response)
+		public void editValueKeyProperties(ActionRequest request, ActionResponse response)
 		        throws Exception {
 
-				logger.info("editValueKeyNHproperties - "+request.getParameter("keyToEdit"));
+				logger.info("editValueKeyProperties - "+request.getParameter("keyToEdit"));
 				
 				request.setAttribute("keyToEdit", request.getParameter("keyToEdit"));
-		        response.setRenderParameter("jspPage", editValueKeyPropertiesJSP);
+		        response.setRenderParameter("jspPage", editValueKeyPropertiesjsp);
 		}
 		
-		public void updateValueKeyNHproperties(ActionRequest request, ActionResponse response)
+		public void updateValueKeyProperties(ActionRequest request, ActionResponse response)
 		        throws Exception {
 
 				String parKey = request.getParameter("keyToEdit");
 				String parNewValue = request.getParameter("newValueForKey");
-				logger.info("updateValueKeyNHproperties - "+parNewValue);
+				logger.info("updateValueKeyProperties - "+parNewValue);
 				
 				String oldValue = Config.getProp(parKey);
 				
@@ -64,23 +49,23 @@ public class PropertiesViewPortlet extends MVCPortlet {
 				Config.updateOldPropWithNewProp(oldProp,newProp);
 				
 				Config.reload();
-		        response.setRenderParameter("jspPage", viewPropertiesJSP);
+		        response.setRenderParameter("jspPage", viewPropertiesjsp);
 		}
 		
 		
-		public void newNHproperties(ActionRequest request, ActionResponse response)
+		public void newProperties(ActionRequest request, ActionResponse response)
 		        throws Exception {
 
-				logger.info("newNHproperties");
-		        response.setRenderParameter("jspPage", insertKeyValuePropertiesJSP);
+				logger.info("newProperties");
+		        response.setRenderParameter("jspPage", insertKeyValuePropertiesjsp);
 		}
 		
-		public void insertKeyValueNHproperties(ActionRequest request, ActionResponse response)
+		public void insertKeyValueProperties(ActionRequest request, ActionResponse response)
 		        throws Exception {
 
 				String parNewKey = request.getParameter("keyNewProp");
 				String parNewValue = request.getParameter("valueNewProp");
-				logger.info("insertKeyValueNHproperties - "+parNewKey+"="+parNewValue);
+				logger.info("insertKeyValueProperties - "+parNewKey+"="+parNewValue);
 								
 				String newProp = parNewKey+"="+parNewValue;
 				
@@ -88,8 +73,7 @@ public class PropertiesViewPortlet extends MVCPortlet {
 				
 				
 				Config.reload();
-		        response.setRenderParameter("jspPage", viewPropertiesJSP);
+		        response.setRenderParameter("jspPage", viewPropertiesjsp);
 		}
-		
 		
 }

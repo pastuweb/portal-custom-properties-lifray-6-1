@@ -1,5 +1,7 @@
 # portal-custom-properties-lifray-6-1
-Automatically exported from code.google.com/p/portal-custom-properties-lifray-6-1
+-
+It was a project shared by Google Code Hosting Projects.
+-
 
 Portal Properties Manager for Liferay 6.1
 
